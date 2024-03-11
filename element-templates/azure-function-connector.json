@@ -1,8 +1,8 @@
 {
   "$schema" : "https://unpkg.com/@camunda/zeebe-element-templates-json-schema/resources/schema.json",
-  "name" : "Template connector",
-  "id" : "io.camunda.connector.Template.v1",
-  "description" : "Describe this connector",
+  "name" : "Azure Function Connector",
+  "id" : "io.camunda.connector.azure.function.v1",
+  "description" : "Invoke azure serverless functions from within processes",
   "documentationRef" : "https://docs.camunda.io/docs/components/connectors/out-of-the-box-connectors/available-connectors-overview/",
   "version" : 1,
   "category" : {
@@ -17,8 +17,8 @@
     "id" : "authentication",
     "label" : "Authentication"
   }, {
-    "id" : "compose",
-    "label" : "Compose"
+    "id" : "configuration",
+    "label" : "Configuration"
   }, {
     "id" : "output",
     "label" : "Output mapping"
@@ -30,7 +30,7 @@
     "label" : "Retries"
   } ],
   "properties" : [ {
-    "value" : "io.camunda:template:1",
+    "value" : "de.viadee.bpm.camunda:azure-serverless-connector:1",
     "binding" : {
       "type" : "zeebe:taskDefinition:type"
     },
@@ -66,19 +66,46 @@
     },
     "type" : "String"
   }, {
-    "id" : "message",
-    "label" : "Message",
+    "id" : "configuration.operation",
+    "label" : "Select Operation",
     "optional" : false,
+    "value" : "invoke_sync",
+    "group" : "configuration",
+    "binding" : {
+      "name" : "configuration.operation",
+      "type" : "zeebe:input"
+    },
+    "description": "Select operation to execute.",
+    "type" : "Dropdown",
     "constraints" : {
       "notEmpty" : true
     },
-    "feel" : "optional",
-    "group" : "compose",
+    "choices": [
+      {
+        "name": "Invoke function (sync)",
+        "value": "invoke_sync"
+      }
+    ]
+  }, {
+    "id" : "configuration.functionName",
+    "label" : "Specify Function Name",
+    "optional" : false,
+    "group" : "configuration",
     "binding" : {
-      "name" : "message",
+      "name" : "configuration.functionName",
       "type" : "zeebe:input"
     },
-    "type" : "Text"
+    "description": "Specify name of function to execute.",
+    "type" : "Text",
+    "constraints" : {
+      "notEmpty" : true
+    },
+    "condition": {
+      "property": "configuration.operation",
+      "oneOf": [
+        "invoke_sync"
+      ]
+    }
   }, {
     "id" : "resultVariable",
     "label" : "Result variable",
@@ -124,6 +151,6 @@
     "type" : "Hidden"
   } ],
   "icon" : {
-    "contents" : "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMTgiIHdpZHRoPSIxOCIgdmlld0JveD0iMCAwIDEwIDEwIiBzaGFwZS1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiI+PHRpdGxlPlNsYWNrPC90aXRsZT48ZyBmaWxsPSJub25lIj48cGF0aCBkPSJNMCwwIEwwLDEwIEwxMCwxMCBMMTAsMCB6IiBmaWxsPSIjZWNiMTJmIi8+PC9nPjwvc3ZnPg=="
+    "contents" : "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOCAxOCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iLTE3NS45OTMiIHkxPSItMzQzLjcyMyIgeDI9Ii0xNzUuOTkzIiB5Mj0iLTM1OS4yMzIiIGdyYWRpZW50VHJhbnNmb3JtPSJtYXRyaXgoMS4xNTYgMCAwIDEuMDI5IDIxMi41NzMgMzcwLjU0OCkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZWExMWIiLz48c3RvcCBvZmZzZXQ9Ii4yODQiIHN0b3AtY29sb3I9IiNmZWE1MWEiLz48c3RvcCBvZmZzZXQ9Ii41NDciIHN0b3AtY29sb3I9IiNmZWIwMTgiLz48c3RvcCBvZmZzZXQ9Ii44IiBzdG9wLWNvbG9yPSIjZmZjMzE0Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZkNzBmIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHBhdGggZD0iTTUuNTQgMTMuMTA1bC0uNTg2LjU4OGEuMjY3LjI2NyAwIDAxLS4zNzcgMEwuMjIzIDkuMzUzYS41MzMuNTMzIDAgMDEwLS43NTVsLjU4OC0uNTkgNC43MzIgNC43MThhLjI2Ny4yNjcgMCAwMTAgLjM3OHoiIGZpbGw9IiM1MGU2ZmYiLz48cGF0aCBkPSJNNC44NjMgNC4zMDVsLjU5LjU4OGEuMjY3LjI2NyAwIDAxMCAuMzc4TC44MDYgOS45MzJsLS41OS0uNTg5YS41MzMuNTMzIDAgMDEtLjAwMS0uNzU0bDQuMjczLTQuMjg1YS4yNjcuMjY3IDAgMDEuMzc2IDB6IiBmaWxsPSIjMTQ5MGRmIi8+PHBhdGggZD0iTTE3LjE5IDguMDEybC41ODguNTlhLjUzMy41MzMgMCAwMS0uMDAxLjc1NGwtNC4zNTQgNC4zNGEuMjY3LjI2NyAwIDAxLS4zNzcgMGwtLjU4Ni0uNTg3YS4yNjcuMjY3IDAgMDEwLS4zNzdsNC43MzItNC43MTh6IiBmaWxsPSIjNTBlNmZmIi8+PHBhdGggZD0iTTE3Ljc4MiA5LjM0bC0uNTkuNTg5LTQuNjQ4LTQuNjYyYS4yNjcuMjY3IDAgMDEwLS4zNzdsLjU5LS41ODhhLjI2Ny4yNjcgMCAwMS4zNzggMGw0LjI3MyA0LjI4NmEuNTMzLjUzMyAwIDAxMCAuNzUzeiIgZmlsbD0iIzE0OTBkZiIvPjxwYXRoIGQ9Ik04LjQ1OSA5LjlINC44N2EuMTkzLjE5MyAwIDAxLS4yLS4xODEuMTY2LjE2NiAwIDAxLjAxOC0uMDc1TDguOTkxIDEuMTNhLjIwNi4yMDYgMCAwMS4xODYtLjEwNmg0LjI0NWEuMTkzLjE5MyAwIDAxLjIuMTgxLjE2NS4xNjUgMCAwMS0uMDM1LjFMOC41MzQgNy45NjZoNC45MjhhLjE5My4xOTMgMCAwMS4yLjE4MS4xNzYuMTc2IDAgMDEtLjA1Mi4xMjJsLTguMTg5IDguNTE5Yy0uMDc3LjA0Ni0uNjI0LjUtLjM1Ni0uMTg5eiIgZmlsbD0idXJsKCNhKSIvPjwvc3ZnPg=="
   }
 }

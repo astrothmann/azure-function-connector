@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0vgqcpm" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.19.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.4.0">
+  <bpmn:process id="Process_1eqw42l" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0a6wyha</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_1szb04f">
+      <bpmn:incoming>Flow_02zxmic</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0a6wyha" sourceRef="StartEvent_1" targetRef="Activity_06j9oot" />
+    <bpmn:sequenceFlow id="Flow_02zxmic" sourceRef="Activity_06j9oot" targetRef="Event_1szb04f" />
+    <bpmn:serviceTask id="Activity_06j9oot" name="Invoke function" zeebe:modelerTemplate="io.camunda.connector.azure.function.v1" zeebe:modelerTemplateVersion="1" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOCAxOCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iLTE3NS45OTMiIHkxPSItMzQzLjcyMyIgeDI9Ii0xNzUuOTkzIiB5Mj0iLTM1OS4yMzIiIGdyYWRpZW50VHJhbnNmb3JtPSJtYXRyaXgoMS4xNTYgMCAwIDEuMDI5IDIxMi41NzMgMzcwLjU0OCkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZWExMWIiLz48c3RvcCBvZmZzZXQ9Ii4yODQiIHN0b3AtY29sb3I9IiNmZWE1MWEiLz48c3RvcCBvZmZzZXQ9Ii41NDciIHN0b3AtY29sb3I9IiNmZWIwMTgiLz48c3RvcCBvZmZzZXQ9Ii44IiBzdG9wLWNvbG9yPSIjZmZjMzE0Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZkNzBmIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHBhdGggZD0iTTUuNTQgMTMuMTA1bC0uNTg2LjU4OGEuMjY3LjI2NyAwIDAxLS4zNzcgMEwuMjIzIDkuMzUzYS41MzMuNTMzIDAgMDEwLS43NTVsLjU4OC0uNTkgNC43MzIgNC43MThhLjI2Ny4yNjcgMCAwMTAgLjM3OHoiIGZpbGw9IiM1MGU2ZmYiLz48cGF0aCBkPSJNNC44NjMgNC4zMDVsLjU5LjU4OGEuMjY3LjI2NyAwIDAxMCAuMzc4TC44MDYgOS45MzJsLS41OS0uNTg5YS41MzMuNTMzIDAgMDEtLjAwMS0uNzU0bDQuMjczLTQuMjg1YS4yNjcuMjY3IDAgMDEuMzc2IDB6IiBmaWxsPSIjMTQ5MGRmIi8+PHBhdGggZD0iTTE3LjE5IDguMDEybC41ODguNTlhLjUzMy41MzMgMCAwMS0uMDAxLjc1NGwtNC4zNTQgNC4zNGEuMjY3LjI2NyAwIDAxLS4zNzcgMGwtLjU4Ni0uNTg3YS4yNjcuMjY3IDAgMDEwLS4zNzdsNC43MzItNC43MTh6IiBmaWxsPSIjNTBlNmZmIi8+PHBhdGggZD0iTTE3Ljc4MiA5LjM0bC0uNTkuNTg5LTQuNjQ4LTQuNjYyYS4yNjcuMjY3IDAgMDEwLS4zNzdsLjU5LS41ODhhLjI2Ny4yNjcgMCAwMS4zNzggMGw0LjI3MyA0LjI4NmEuNTMzLjUzMyAwIDAxMCAuNzUzeiIgZmlsbD0iIzE0OTBkZiIvPjxwYXRoIGQ9Ik04LjQ1OSA5LjlINC44N2EuMTkzLjE5MyAwIDAxLS4yLS4xODEuMTY2LjE2NiAwIDAxLjAxOC0uMDc1TDguOTkxIDEuMTNhLjIwNi4yMDYgMCAwMS4xODYtLjEwNmg0LjI0NWEuMTkzLjE5MyAwIDAxLjIuMTgxLjE2NS4xNjUgMCAwMS0uMDM1LjFMOC41MzQgNy45NjZoNC45MjhhLjE5My4xOTMgMCAwMS4yLjE4MS4xNzYuMTc2IDAgMDEtLjA1Mi4xMjJsLTguMTg5IDguNTE5Yy0uMDc3LjA0Ni0uNjI0LjUtLjM1Ni0uMTg5eiIgZmlsbD0idXJsKCNhKSIvPjwvc3ZnPg==">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="de.viadee.bpm.camunda:azure-serverless-connector:1" />
+        <zeebe:ioMapping>
+          <zeebe:input source="test" target="authentication.user" />
+          <zeebe:input source="test" target="authentication.token" />
+          <zeebe:input source="invoke_sync" target="configuration.operation" />
+          <zeebe:input source="sdfghsaasdbnanbas" target="configuration.functionName" />
+        </zeebe:ioMapping>
+        <zeebe:taskHeaders>
+          <zeebe:header key="resultVariable" value="result" />
+          <zeebe:header key="retryBackoff" value="PT0S" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0a6wyha</bpmn:incoming>
+      <bpmn:outgoing>Flow_02zxmic</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1eqw42l">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1szb04f_di" bpmnElement="Event_1szb04f">
+        <dc:Bounds x="432" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_155ulys_di" bpmnElement="Activity_06j9oot">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0a6wyha_di" bpmnElement="Flow_0a6wyha">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02zxmic_di" bpmnElement="Flow_02zxmic">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="432" y="117" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
