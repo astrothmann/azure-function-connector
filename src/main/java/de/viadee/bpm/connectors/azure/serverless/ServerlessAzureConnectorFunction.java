@@ -33,12 +33,10 @@ public class ServerlessAzureConnectorFunction implements OutboundConnectorFuncti
   @Override
   public Object execute(OutboundConnectorContext context) {
     final var connectorRequest = context.bindVariables(ConnectorRequest.class);
-    return executeConnector(connectorRequest);
-  }
 
-  private MyConnectorResult executeConnector(final ConnectorRequest connectorRequest) {
-    // TODO: implement connector logic
-    var req = connectorRequest;
-    return new MyConnectorResult("asd");
+    var result = ExecutionHandler.getExecutor(connectorRequest,
+        context.getJobContext().getProcessInstanceKey());
+
+    return result;
   }
 }

@@ -82,8 +82,12 @@
     },
     "choices": [
       {
-        "name": "Invoke function (sync)",
+        "name": "Invoke Function (Sync)",
         "value": "invoke_sync"
+      },
+      {
+        "name": "Get List of Functions",
+        "value": "get_list"
       }
     ]
   }, {
