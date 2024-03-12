@@ -6,7 +6,7 @@
 > * [Element Template](./element-templates/azure-function-connector.json)
 > * [POM](./pom.xml) (artifact name, id, description)
 > * [Connector Function](src/main/java/de/viadee/bpm/connectors/azure/serverless/MyConnectorFunction.java) (rename, implement, update `OutboundConnector` annotation)
-> * [Service Provider Interface (SPI)](./src/main/resources/META-INF/services/io.camunda.connector.api.ServerlessAzureConnectorFunction) (rename)
+> * [Service Provider Interface (SPI)](./src/main/resources/META-INF/services/io.camunda.connector.api.outbound.OutboundConnectorFunction) (rename)
 >
 > ...and delete this hint.
 > 

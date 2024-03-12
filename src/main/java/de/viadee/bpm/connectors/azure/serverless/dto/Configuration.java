@@ -9,4 +9,4 @@ public record Configuration(
     String operation,
     @NotEmpty
     @TemplateProperty(group = "configuration", label = "Function Name", description = "Name of function to invoke")
-    String functioName) { }
+    String functionName) { }
