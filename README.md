@@ -3,9 +3,9 @@
 > To use this template update the following resources to match the name of your connector:
 >
 > * [README](./README.md) (title, description)
-> * [Element Template](./element-templates/template-connector.json)
+> * [Element Template](./element-templates/azure-function-connector.json)
 > * [POM](./pom.xml) (artifact name, id, description)
-> * [Connector Function](src/main/java/io/camunda/example/MyConnectorFunction.java) (rename, implement, update `OutboundConnector` annotation)
+> * [Connector Function](src/main/java/de/viadee/bpm/connectors/azure/serverless/MyConnectorFunction.java) (rename, implement, update `OutboundConnector` annotation)
 > * [Service Provider Interface (SPI)](./src/main/resources/META-INF/services/io.camunda.connector.api.outbound.OutboundConnectorFunction) (rename)
 >
 > ...and delete this hint.
@@ -97,4 +97,4 @@ It is not mandatory to generate the element template for your connector and you 
 However, the generator provides a convenient way to create the template and keep it in sync with the connector input class
 and empowers you to prototype and iterate quickly.
 
-The generated element template can be found in [element-templates/template-connector.json](./element-templates/template-connector.json).
+The generated element template can be found in [element-templates/template-connector.json](./element-templates/azure-function-connector.json).
